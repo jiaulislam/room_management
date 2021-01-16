@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'bootstrap_cdn.html' %}
+    {% if title %}
+        <title>{% block title %} {% endblock title %} - Ghuri </title>
+    {% else %}
+        <title>Ghuri</title>
+    {% endif %}
+</head>
+<body>
+    <div class="header">
+        {% block header %}
+        {% endblock header %}
+    </div>
+
+    <div class="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <div class="footer">
+        {% block footer %}
+        {% endblock footer %}
+    </div>
+
+    {% include 'js_cdn.html' %}
+</body>
+</html>
