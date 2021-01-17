@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% include 'bootstrap_cdn.html' %}
+    {% include 'fontawosome_cdn.html' %}
+    <!-- # Title 
+    #------------------ -->
     {% if title %}
-        <title>{% block title %} {% endblock title %} - Ghuri </title>
+    <title>{% block title %} {% endblock title %} - Ghuri</title>
     {% else %}
-        <title>Ghuri</title>
+    <title>Ghuri</title>
     {% endif %}
 </head>
+
 <body>
     {% include 'navigation.html' %}
 
-    <div class="header">
-        {% block header %}
-        {% endblock header %}
-    </div>
+    <div class="container">
+        <div class="header">
+            {% block header %}
+            {% endblock header %}
+        </div>
 
-    <div class="content">
+
         {% block content %}
         {% endblock content %}
     </div>
-
     <div class="footer">
         {% block footer %}
         {% endblock footer %}
     </div>
-
     {% include 'js_cdn.html' %}
 </body>
+
 </html>

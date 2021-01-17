@@ -9,7 +9,7 @@ class Person(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
-class AddExpense(models.Model):
+class Expenses(models.Model):
     items_description = models.TextField(max_length=100)
     expense_amount = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)

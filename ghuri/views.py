@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from .forms import AddExpenseForm, AddMealsForm
+
 
 def dashboard(request):
     view_context = {
@@ -9,15 +11,34 @@ def dashboard(request):
 
 
 def add_expense(request):
+
+    if request.method == 'POST':
+        form = AddExpenseForm(request.POST)
+        if form.is_valid():
+            return redirect('add_expense')
+    else:
+        form = AddExpenseForm()
+
     view_context = {
         'title': 'Add Expense',
+        'form': form,
     }
     return render(request, 'ghuri/add_expense.html', view_context)
 
 
 def add_meal(request):
+    title = 'Add Meals'
+
+    if request.method == 'POST':
+        form = AddMealsForm(request.POST)
+        if form.is_valid():
+            return redirect('add_meal')
+    else:
+        form = AddMealsForm()
+
     view_context = {
-        'title': 'Add Meals',
+        'title': title,
+        'form': form,
     }
     return render(request, 'ghuri/add_meal.html', view_context)
 
