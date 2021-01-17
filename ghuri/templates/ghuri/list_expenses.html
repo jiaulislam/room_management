@@ -6,4 +6,9 @@
 
 {% block content %}
     <h1 class="text-center">List all Expenses</h1>
+
+    {% for a_expense in expenses %}
+        <h4>{{ a_expense.person }}</h4>
+        <p>Amount: {{ a_expense.expense_amount }} with {{ a_expense.items_description }}</p>
+    {% endfor %}
 {% endblock content %}

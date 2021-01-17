@@ -1,21 +1,18 @@
 from django import forms
 from django.forms import Form
-from ghuri.models import Person, Expenses, Meals
+from ghuri.models import Expenses, Meals
 
 
-class AddExpenseForm(forms.Form):
-    name = forms.CharField(label="User")
-    expenses = forms.IntegerField(label="Amount")
-    expense_details = forms.CharField(
-        label="Comments", required=False, widget=forms.Textarea, max_length=100)
+class AddExpenseForm(forms.ModelForm):
+    class Meta:
+        model = Expenses
+        fields = "__all__"
 
 
-class AddMealsForm(forms.Form):
-    name = forms.CharField(label="User")
-    meal_count = forms.IntegerField(label="Meal unit")
-    expense_details = forms.CharField(
-        label="Comments", required=False, widget=forms.Textarea, max_length=100)
-
+class AddMealsForm(forms.ModelForm):
+    class Meta:
+        model = Meals
+        fields = "__all__"
 
 
 
