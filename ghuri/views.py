@@ -26,11 +26,11 @@ def add_expense(request):
         'title': title,
         'form': form,
     }
-    return render(request, 'ghuri/add_expense.html', view_context)
+    return render(request, 'ghuri/add_expense.html', view_context)  
 
 
 def add_meal(request):
-    title = 'Add Meals'
+    title = 'Add Meal'
 
     if request.method == 'POST':
         form = AddMealsForm(request.POST)
@@ -74,3 +74,7 @@ def login(request):
 def logout(request):
 
     return render(request, 'ghuri/logout.html')
+
+def index(request):
+
+    return render(request, 'ghuri/index.html')

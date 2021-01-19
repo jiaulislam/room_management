@@ -20,15 +20,15 @@ class Expenses(models.Model):
         return f"{self.person.username} spent {self.expense_amount}Tk."
 
 class Meals(models.Model):
-    meal_count = models.IntegerField(default=1)
-    description = models.TextField(max_length=100, blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
     name = models.ForeignKey(
             User,
             on_delete=models.DO_NOTHING,
             related_name='meals'
         )
+    meal_count = models.IntegerField(default=1)
+    description = models.TextField(max_length=100, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["-created",]
