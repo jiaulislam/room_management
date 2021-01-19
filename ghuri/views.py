@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .forms import AddExpenseForm, AddMealsForm
+from .forms import AddExpenseForm, AddMealForm
 from .models import Expense, Meal
 
 
@@ -33,7 +32,7 @@ def add_meal(request):
     title = 'Add Meal'
 
     if request.method == 'POST':
-        form = AddMealsForm(request.POST)
+        form = AddMealForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('add_meal')
