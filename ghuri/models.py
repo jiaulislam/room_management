@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Expenses(models.Model):
+class Expense(models.Model):
     objects = models.Manager()
     name = models.ForeignKey(User,
             on_delete=models.DO_NOTHING,
@@ -19,7 +19,7 @@ class Expenses(models.Model):
     def __str__(self):
         return f"Added Expense - {self.expense_amount} bdt."
 
-class Meals(models.Model):
+class Meal(models.Model):
     name = models.ForeignKey(
             User,
             on_delete=models.DO_NOTHING,

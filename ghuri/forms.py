@@ -1,16 +1,16 @@
 from django import forms
 from django.forms import Form
-from ghuri.models import Expenses, Meals
+from ghuri.models import Expense, Meal
 
 
 class AddExpenseForm(forms.ModelForm):
     class Meta:
-        model = Expenses
+        model = Expense
         fields = "__all__"
 
 class AddMealsForm(forms.ModelForm):
     class Meta:
-        model = Meals
+        model = Meal
         fields = "__all__"
 
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import AddExpenseForm, AddMealsForm
-from .models import Expenses, Meals
+from .models import Expense, Meal
 
 
 def dashboard(request):
@@ -48,7 +48,7 @@ def add_meal(request):
 
 
 def list_expenses(request):
-    expenses = Expenses.objects.all()
+    expenses = Expense.objects.all()
 
     view_context = {
         'title': 'Expenses List',
@@ -58,7 +58,7 @@ def list_expenses(request):
 
 
 def list_meals(request):
-    meals = Meals.objects.all()
+    meals = Meal.objects.all()
     view_context = {
         'title': 'Meals List',
         'meals': meals,

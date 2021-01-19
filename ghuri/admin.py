@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Expenses, Meals
+from .models import Expense, Meal
 
-admin.site.register(Expenses)
-admin.site.register(Meals)
+admin.site.register(Expense)
+admin.site.register(Meal)
