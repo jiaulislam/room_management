@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'ghuri.apps.GhuriConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,7 +52,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'room_management.urls'
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

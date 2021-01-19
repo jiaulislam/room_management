@@ -6,9 +6,21 @@
 
 {% block content %}
     <h1 class="text-center">List all Expenses</h1>
+    <table class="table table-dark table-bordered">
+        <tr class="text-center">
+            <th>Date</th>
+            <th>Name</th>
+            <th>Expense Amount</th>
+            <th>Remarks</th>
+        </tr>
+        {% for expense in expenses %}
+            <tr class="text-center">
+                <td>{{ expense.created }}</td>
+                <td>{{ expense.person.username }}</td>
+                <td>{{ expense.expense_amount }} <span>BDT.</span></td>
+                <td>{{ expense.items_description }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 
-    {% for a_expense in expenses %}
-        <h4>{{ a_expense.person }}</h4>
-        <p>Amount: {{ a_expense.expense_amount }} with {{ a_expense.items_description }}</p>
-    {% endfor %}
 {% endblock content %}

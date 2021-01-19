@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 
 class Expenses(models.Model):
     objects = models.Manager()
-    items_description = models.TextField(max_length=100)
-    expense_amount = models.IntegerField()
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    person = models.ForeignKey(User,
+    name = models.ForeignKey(User,
             on_delete=models.DO_NOTHING,
             related_name='expenses'
     )
+    expense_amount = models.IntegerField()
+    items_description = models.TextField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["-created",]
@@ -21,10 +21,10 @@ class Expenses(models.Model):
 
 class Meals(models.Model):
     meal_count = models.IntegerField(default=1)
-    description = models.TextField(max_length=100)
+    description = models.TextField(max_length=100, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    person = models.ForeignKey(
+    name = models.ForeignKey(
             User,
             on_delete=models.DO_NOTHING,
             related_name='meals'

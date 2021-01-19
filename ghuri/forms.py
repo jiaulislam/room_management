@@ -8,7 +8,6 @@ class AddExpenseForm(forms.ModelForm):
         model = Expenses
         fields = "__all__"
 
-
 class AddMealsForm(forms.ModelForm):
     class Meta:
         model = Meals
