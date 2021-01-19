@@ -17,7 +17,7 @@ class Expenses(models.Model):
         ordering = ["-created",]
 
     def __str__(self):
-        return f"{self.person.username} spent {self.expense_amount}Tk."
+        return f"Added Expense - {self.expense_amount} bdt."
 
 class Meals(models.Model):
     name = models.ForeignKey(
@@ -34,4 +34,4 @@ class Meals(models.Model):
         ordering = ["-created",]
 
     def __str__(self):
-        return f"{self.person.first_name} had {self.meal_count} meals on {self.created}"
+        return f"You added {self.meal_count} on {self.created}"

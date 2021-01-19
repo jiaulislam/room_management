@@ -6,7 +6,7 @@
 
 
 {% block content %}
-<h1 class="text-center">List all Meals</h1>
+<h1 class="text-center">List of meals</h1>
 <table class='table table-dark table-bordered'>
     <tr>
         <th>Date</th>
@@ -18,7 +18,7 @@
     <tr>
         <td>{{meal.created }}</td>
         <td>{{ meal.meal_count }}</td>
-        <td>{{ meal.person.username }}</td>
+        <td>{{ meal.name.username }}</td>
         <td>{{ meal.description }}</td>
     </tr>
     {% endfor %}

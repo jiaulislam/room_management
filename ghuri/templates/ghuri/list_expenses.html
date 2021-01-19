@@ -5,7 +5,7 @@
 {% endblock title %}
 
 {% block content %}
-    <h1 class="text-center">List all Expenses</h1>
+    <h1 class="text-center">List of expenses</h1>
     <table class="table table-dark table-bordered">
         <tr class="text-center">
             <th>Date</th>
@@ -16,7 +16,7 @@
         {% for expense in expenses %}
             <tr class="text-center">
                 <td>{{ expense.created }}</td>
-                <td>{{ expense.person.username }}</td>
+                <td>{{ expense.name.username }}</td>
                 <td>{{ expense.expense_amount }} <span>BDT.</span></td>
                 <td>{{ expense.items_description }}</td>
             </tr>
