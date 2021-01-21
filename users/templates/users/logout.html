@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %} Logged out {% endblock title %}
 
 {% block content %}
-		<h3>You have been logged out successfully.</h3>
+		<h3 class='text-center mt-5'>You have been logged out successfully.</h3>
+		<ul class='text-center'>
+			<a class="badge badge-success" href="{% url 'login' %}" >Login Again</a>
+		</ul>
+
 {% endblock content %}
