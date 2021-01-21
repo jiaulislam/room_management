@@ -8,7 +8,7 @@
         <ul class="navbar-nav mr-auto">
             {% if user.is_authenticated %}
                 <li class="nav-item h4 {% if act == 'dashboard' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'dashboard-ghuri' %}">Dashboard <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'dashboard-ghuri' %}">Dashboard</a>
                 </li>
                 <li class="nav-item h4 {% if act == 'profile' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'profile' %}">Profile</a>
@@ -32,8 +32,8 @@
                 <a href="{% url 'logout' %}" class="nav-link h4">Logout</a>
             </li>
             {% else %}
-                <li class="nav-item active ">
-                    <a class="nav-link h4" href="{% url 'login' %}">Login <span class="sr-only">(current)</span></a>
+                <li class="nav-item active">
+                    <a class="nav-link h4" href="{% url 'login' %}">Login</a>
                 </li>
         </ul>
             {% endif %}
