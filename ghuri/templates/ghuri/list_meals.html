@@ -7,13 +7,16 @@
 
 {% block content %}
 <h1 class="text-center">List of meals</h1>
-<table class='table table-dark table-bordered'>
-    <tr>
-        <th>Date</th>
-        <th>Meal Count</th>
-        <th>Name</th>
-        <th>Remarks</th>
-    </tr>
+<table class='table table-sm table-bordered'>
+    <thead class="thead-dark">
+        <tr>
+            <th>Date</th>
+            <th>Meal Count</th>
+            <th>Name</th>
+            <th>Remarks</th>
+        </tr>
+    </thead>
+
     {% for meal in meals %}
     <tr>
         <td>{{meal.created }}</td>

@@ -1,26 +1,29 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    {{ title }}
+{{ title }}
 {% endblock title %}
 
 {% block content %}
-    <h1 class="text-center">List of expenses</h1>
-    <table class="table table-dark table-bordered">
-        <tr class="text-center">
-            <th>Date</th>
-            <th>Name</th>
-            <th>Expense Amount</th>
-            <th>Remarks</th>
-        </tr>
-        {% for expense in expenses %}
-            <tr class="text-center">
-                <td>{{ expense.created }}</td>
-                <td>{{ expense.name.username }}</td>
-                <td>{{ expense.expense_amount }} <span>BDT.</span></td>
-                <td>{{ expense.items_description }}</td>
-            </tr>
-        {% endfor %}
-    </table>
+<h1 class="text-center">List of expenses</h1>
+<table class="table table-sm table-bordered">
+    <thead class="thead-dark">
+     <tr class="text-center">
+        <th>Date</th>
+        <th>Name</th>
+        <th>Expense Amount</th>
+        <th>Remarks</th>
+    </tr>     
+</thead>
+
+{% for expense in expenses %}
+<tr class="text-center">
+    <td>{{ expense.created }}</td>
+    <td>{{ expense.name.username }}</td>
+    <td>{{ expense.expense_amount }} <span>BDT.</span></td>
+    <td>{{ expense.items_description }}</td>
+</tr>
+{% endfor %}
+</table>
 
 {% endblock content %}

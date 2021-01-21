@@ -122,4 +122,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'index-ghuri'
-LOGIN = 'login'
+LOGIN_URL = 'login'

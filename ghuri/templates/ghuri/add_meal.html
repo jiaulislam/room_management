@@ -4,14 +4,14 @@
 {% block title %} {{ title }} {% endblock title %}
 
 {% block content %}
-<h1 class="text-center">Add Meal</h1>
+<h3 class="text-center border-bottom">Add Meal</h3>
 <div class="row justify-content-md-center">
 	<div class="col-6">
 		<div class="form-group ">
 			<form method="post">
 				{% csrf_token %}
 				{{ form|crispy }}
-				<input type="submit" value="Submit">
+				<input class='btn btn-primary btn-xl' type="submit" value="Submit">
 			</form>
 		</div>
 	</div>

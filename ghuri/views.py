@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import AddExpenseForm, AddMealForm
 from .models import Expense, Meal
+from django.contrib.auth.decorators import login_required
 
 
 def dashboard(request):
@@ -10,7 +11,7 @@ def dashboard(request):
     }
     return render(request, 'ghuri/dashboard.html', view_context)
 
-
+@login_required
 def add_expense(request):
     title = 'Add Expense'
     if request.method == 'POST':
@@ -37,7 +38,7 @@ def add_meal(request):
             form.save()
             return redirect('add_meal')
     else:
-        form = AddMealsForm()
+        form = AddMealForm()
 
     view_context = {
         'title': title,
