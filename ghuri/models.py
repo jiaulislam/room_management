@@ -34,4 +34,4 @@ class Meal(models.Model):
         ordering = ["-created",]
 
     def __str__(self):
-        return f"You added {self.meal_count} on {self.created}"
+        return f"You added {self.meal_count} meal on {self.created}"

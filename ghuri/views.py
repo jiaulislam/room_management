@@ -65,15 +65,6 @@ def list_meals(request):
     return render(request, 'ghuri/list_meals.html', view_context)
 
 
-def login(request):
-
-    return render(request, 'ghuri/login.html')
-
-
-def logout(request):
-
-    return render(request, 'ghuri/logout.html')
-
 def index(request):
 
     return render(request, 'ghuri/index.html')
