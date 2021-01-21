@@ -1,37 +1,41 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 
 
 class Expense(models.Model):
     objects = models.Manager()
+
     name = models.ForeignKey(User,
             on_delete=models.DO_NOTHING,
-            related_name='expenses'
+            related_name='expenses',
+            default=User.id,
     )
-    expense_amount = models.IntegerField()
-    items_description = models.TextField(max_length=100)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    expense_amount = models.DecimalField(max_digits=6, decimal_places=2)
+    items_description = models.TextField(max_length=100, blank=True)
+    date = models.DateTimeField(default=timezone.now)
 
     class Meta:
-        ordering = ["-created",]
+        ordering = ["-date",]
 
     def __str__(self):
-        return f"Added Expense - {self.expense_amount} bdt."
+        return f"Added Expense - {self.expense_amount} BDT"
 
 class Meal(models.Model):
+    objects = models.Manager()
+    
     name = models.ForeignKey(
             User,
             on_delete=models.DO_NOTHING,
-            related_name='meals'
+            related_name='meals',
+            default=User.username,
         )
     meal_count = models.IntegerField(default=1)
     description = models.TextField(max_length=100, blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(default=timezone.now)
 
     class Meta:
-        ordering = ["-created",]
+        ordering = ["-date",]
 
     def __str__(self):
         return f"You added {self.meal_count} meal on {self.created}"

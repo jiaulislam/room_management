@@ -2,12 +2,15 @@ from django.shortcuts import render, redirect
 from .forms import AddExpenseForm, AddMealForm
 from .models import Expense, Meal
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 
-
+@login_required
 def dashboard(request):
-
+    total_expenses = Expense.objects.aggregate(Sum('expense_amount'))
     view_context = {
         'title': 'Dashboard',
+        'act': 'dashboard',
+        'total_expense': total_expenses['expense_amount__sum']
     }
     return render(request, 'ghuri/dashboard.html', view_context)
 
@@ -28,7 +31,7 @@ def add_expense(request):
     }
     return render(request, 'ghuri/add_expense.html', view_context)  
 
-
+@login_required
 def add_meal(request):
     title = 'Add Meal'
 
@@ -46,7 +49,7 @@ def add_meal(request):
     }
     return render(request, 'ghuri/add_meal.html', view_context)
 
-
+@login_required
 def list_expenses(request):
     expenses = Expense.objects.all()
 
@@ -56,7 +59,7 @@ def list_expenses(request):
     }
     return render(request, 'ghuri/list_expenses.html', view_context)
 
-
+@login_required
 def list_meals(request):
     meals = Meal.objects.all()
     view_context = {
@@ -67,5 +70,7 @@ def list_meals(request):
 
 
 def index(request):
-
-    return render(request, 'ghuri/index.html')
+    context = {
+        'title': 'Home',
+    }
+    return render(request, 'ghuri/index.html', context)

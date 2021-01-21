@@ -18,9 +18,9 @@
 
 {% for expense in expenses %}
 <tr class="text-center">
-    <td>{{ expense.created }}</td>
+    <td>{{ expense.date|date:'d-M-Y' }}</td>
     <td>{{ expense.name.username }}</td>
-    <td>{{ expense.expense_amount }} <span>BDT.</span></td>
+    <td>{{ expense.expense_amount }} <span class='text-muted'>BDT</span></td>
     <td class='text-wrap text-uppercase'>{{ expense.items_description }}</td>
 </tr>
 {% endfor %}

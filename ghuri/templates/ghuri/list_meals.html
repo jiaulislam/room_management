@@ -7,21 +7,20 @@
 
 {% block content %}
 <h1 class="text-center">List of meals</h1>
-<table class='table table-sm table-bordered'>
+<table class='table table-sm table-bordered text-center'>
     <thead class="thead-dark">
         <tr>
             <th>Date</th>
-            <th>Meal Count</th>
             <th>Name</th>
+            <th>Meal Count</th>
             <th>Remarks</th>
         </tr>
     </thead>
-
     {% for meal in meals %}
     <tr>
-        <td>{{meal.created }}</td>
-        <td>{{ meal.meal_count }}</td>
+        <td>{{ meal.date|date:'d-M-Y' }}</td>
         <td>{{ meal.name.username }}</td>
+        <td>{{ meal.meal_count }}</td>
         <td>{{ meal.description }}</td>
     </tr>
     {% endfor %}
