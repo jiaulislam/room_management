@@ -6,13 +6,15 @@
 
 {% block content %}
 <h1 class="text-center">List of expenses</h1>
-<table class="table table-sm table-bordered">
+<table class="table table-sm table-striped">
     <thead class="bg-warning">
      <tr class="text-center">
         <th>Date</th>
         <th>Name</th>
         <th>Expense Amount</th>
         <th class='text-wrap'>Remarks</th>
+        <th>Update</th>
+        <th>Delete</th>
     </tr>     
 </thead>
 
@@ -22,6 +24,8 @@
     <td>{{ expense.name.username }}</td>
     <td>{{ expense.expense_amount }} <span class='text-muted'>BDT</span></td>
     <td class='text-wrap text-uppercase'>{{ expense.items_description }}</td>
+    <td><a class="btn btn-info text-uppercase" href="{% url 'update-expense' expense.id %}">edit</a></td>
+    <td><a class="btn btn-danger text-uppercase" href="{% url 'delete-expense' expense.id %}">delete</a></td>
 </tr>
 {% endfor %}
 </table>

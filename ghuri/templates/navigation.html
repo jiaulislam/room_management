@@ -26,7 +26,7 @@
         </ul>
         <ul class="navbar-nav">
             <span class="navbar-text mr-4 h4 text-white">
-                Welcome, {{ user.first_name }}
+                Welcome, {{ user.get_full_name }}
             </span>
             <li class="nav-item">
                 <a href="{% url 'logout' %}" class="nav-link h4">Logout</a>

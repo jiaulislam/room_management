@@ -5,11 +5,9 @@ from django.contrib.auth.models import User
 
 class Expense(models.Model):
     objects = models.Manager()
-
     name = models.ForeignKey(User,
             on_delete=models.DO_NOTHING,
             related_name='expenses',
-            default=User.id,
     )
     expense_amount = models.DecimalField(max_digits=6, decimal_places=2)
     items_description = models.TextField(max_length=100, blank=True)
@@ -24,11 +22,9 @@ class Expense(models.Model):
 class Meal(models.Model):
     objects = models.Manager()
     
-    name = models.ForeignKey(
-            User,
+    name = models.ForeignKey(User,
             on_delete=models.DO_NOTHING,
             related_name='meals',
-            default=User.username,
         )
     meal_count = models.IntegerField(default=1)
     description = models.TextField(max_length=100, blank=True)
@@ -38,4 +34,4 @@ class Meal(models.Model):
         ordering = ["-date",]
 
     def __str__(self):
-        return f"You added {self.meal_count} meal on {self.created}"
+        return f"You added {self.meal_count} meal on {self.date}"

@@ -1,3 +1,8 @@
 .bdt-text {
     text-align: left !important;
 }
+
+.table tbody > tr > td.vert-align_td,
+.table tbody > tr > tr.vert-align_tr {
+   white-space: normal !important;
+}

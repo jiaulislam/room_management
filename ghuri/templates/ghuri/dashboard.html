@@ -24,7 +24,7 @@
                 Total Meals
             </div>
             <div class="card-body font-weight-bold">
-                {{ total_expense }}
+                {{ total_meal }}
             </div>
         </div>
     </div>
@@ -49,5 +49,54 @@
         </div>
     </div>
 </div>
+<table class="table table-sm table-bordered mt-3">
+    <tr class="text-center">
+        <th class="bg-primary h4">Details View for January</th>
+    </tr>
+    <tr>
+        <td>
+            <div class="row pt-3 text-center">
+                <!-- Main Table Details -->
+                <div class="col-12">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-header h5">Sobuz</div>
+                            <div class="card-body">
+                                <table class="table table-sm table-bordered">
+                                    <tr class="bg-danger text-white">
+                                        <th>Expense</th>
+                                        <th>Meals</th>
+                                    </tr>
+                                    <tr class="text-info font-weight-bold">
+                                        <td>2330</td>
+                                        <td>32</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header h5">Jibon</div>
+                            <div class="card-body">
+                                <table class="table table-sm table-bordered">
+                                    <tr class="bg-danger text-white">
+                                        <th>Expense</th>
+                                        <th>Meals</th>
+                                    </tr>
+                                    <tr class="text-info font-weight-bold">
+                                        <td>45454</td>
+                                        <td>12</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+
+    </tr>
+
+</table>
+
 
 {% endblock content %}
