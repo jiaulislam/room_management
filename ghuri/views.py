@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 import datetime
 
+
 @login_required
 def dashboard(request):
     today = datetime.date.today()
@@ -19,6 +20,7 @@ def dashboard(request):
         'total_meal' : dash_meal_count['meal_count__sum']
     }
     return render(request, 'ghuri/dashboard.html', view_context)
+
 
 @login_required
 def add_expense(request):
@@ -37,6 +39,7 @@ def add_expense(request):
     }
     return render(request, 'ghuri/add_expense.html', view_context)  
 
+
 @login_required
 def add_meal(request):
     title = 'Add Meal'
@@ -54,6 +57,7 @@ def add_meal(request):
     }
     return render(request, 'ghuri/add_meal.html', view_context)
 
+
 @login_required
 def list_expenses(request):
     expenses = Expense.objects.all()
@@ -64,6 +68,7 @@ def list_expenses(request):
     }
     return render(request, 'ghuri/list_expenses.html', view_context)
 
+
 @login_required
 def list_meals(request):
     meals = Meal.objects.all()
@@ -72,6 +77,7 @@ def list_meals(request):
         'meals': meals,
     }
     return render(request, 'ghuri/list_meals.html', view_context)
+
 
 @login_required
 def update_expense(request, pk):
@@ -90,11 +96,16 @@ def update_expense(request, pk):
     }
     return render(request, 'ghuri/add_expense.html', context=context)
 
+
 @login_required
 def delete_expense(request, pk):
     expense = Expense.objects.get(id=pk)
-    expense.delete()
-    return redirect('list_expenses')
+    if request.method == "POST":
+        expense.delete()
+        return redirect('list_expenses')
+    context = {'expense': expense}
+    return render(request, 'ghuri/confirmation.html', context)
+
 
 def index(request):
     context = {

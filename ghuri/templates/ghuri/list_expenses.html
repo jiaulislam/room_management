@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block title %}
 {{ title }}
 {% endblock title %}
@@ -25,9 +24,8 @@
     <td>{{ expense.expense_amount }} <span class='text-muted'>BDT</span></td>
     <td class='text-wrap text-uppercase'>{{ expense.items_description }}</td>
     <td><a class="btn btn-info text-uppercase" href="{% url 'update-expense' expense.id %}">edit</a></td>
-    <td><a class="btn btn-danger text-uppercase" href="{% url 'delete-expense' expense.id %}">delete</a></td>
+    <td><a class="btn btn-danger text-uppercase" href="{% url 'delete_expense' expense.id %}">delete</a></td>
 </tr>
 {% endfor %}
-</table>
 
 {% endblock content %}
