@@ -3,7 +3,6 @@ from .forms import AddExpenseForm, AddMealForm
 from .models import Expense, Meal
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
-from django.contrib.auth.models import User
 
 import datetime
 
@@ -26,15 +25,14 @@ def dashboard(request):
 
 @login_required
 def add_expense(request):
-    current_user = request.user
     title = 'Add Expense'
     if request.method == 'POST':
-        form = AddExpenseForm(request.POST, initial={'name': current_user})
+        form = AddExpenseForm(request.POST, initial={'name': request.user})
         if form.is_valid():
             form.save()
             return redirect('add_expense')
     else:
-        form = AddExpenseForm(initial={'name': current_user})
+        form = AddExpenseForm(initial={'name': request.user})
 
     view_context = {
         'title': title,
@@ -47,12 +45,12 @@ def add_expense(request):
 def add_meal(request):
     title = 'Add Meal'
     if request.method == 'POST':
-        form = AddMealForm(request.POST)
+        form = AddMealForm(request.POST, initial={'name': request.user})
         if form.is_valid():
             form.save()
             return redirect('add_meal')
     else:
-        form = AddMealForm()
+        form = AddMealForm(initial={'name': request.user})
 
     view_context = {
         'title': title,

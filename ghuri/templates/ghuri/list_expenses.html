@@ -21,7 +21,7 @@
 <tr class="text-center">
     <td>{{ expense.date|date:'d-M-Y' }}</td>
     <td class='text-capitalize'>{{ expense.name.username }}</td>
-    <td>{{ expense.expense_amount }} <span class='text-muted'>BDT</span></td>
+    <td>{{ expense.expense_amount }} <span class='bdt-text text-muted'>BDT</span></td>
     <td class='text-wrap text-uppercase'>{{ expense.items_description }}</td>
     <td><a class="btn btn-info text-uppercase" href="{% url 'update-expense' expense.id %}">edit</a></td>
     <td><a class="btn btn-danger text-uppercase" href="{% url 'delete_expense' expense.id %}">delete</a></td>

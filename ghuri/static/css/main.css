@@ -1,8 +1,19 @@
-.bdt-text {
-    text-align: left !important;
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.maateen.me/charukola-ultra-light/font.css');
+
+body{
+    background-color: #F7F7F7;
+    font-family: Poppins, sans-serif !important;
 }
 
-.table tbody > tr > td.vert-align_td,
-.table tbody > tr > tr.vert-align_tr {
-   white-space: normal !important;
+.bdt-text {
+    text-align: right !important;
+}
+
+.brand-text {
+    font-family: 'CharukolaUltraLight', sans-serif !important;
+    font-size: 1.8rem !important;
 }

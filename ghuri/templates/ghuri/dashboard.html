@@ -8,43 +8,23 @@
 {% block content %}
 <h1 class='text-center'>This is Dashboard Page</h1>
 <div class="row">
-    <div class="col-3">
+    <div class="col-6">
         <div class="card text-center">
-            <div class="card-header h5 bg-success">
+            <div class="card-header h4 bg-success text-white">
                 Total Expenses
             </div>
-            <div class="card-body font-weight-bold">
-                {{ total_expense }}
+            <div class="card-body font-weight-bold h5 mb-0 alert-warning text-dark">
+                {{ total_expense }} <span class="">BDT</span>
             </div>
         </div>
     </div>
-    <div class="col-3">
+    <div class="col-6">
         <div class="card text-center">
-            <div class="card-header h5 bg-success">
+            <div class="card-header h4 bg-success text-white">
                 Total Meals
             </div>
-            <div class="card-body font-weight-bold">
-                {{ total_meal }}
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="card text-center">
-            <div class="card-header h5 bg-warning">
-                Your Expenses
-            </div>
-            <div class="card-body font-weight-bold">
-                {{ total_expense }}
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="card text-center">
-            <div class="card-header h5 bg-warning">
-                Your Meals
-            </div>
-            <div class="card-body font-weight-bold">
-                {{ total_expense }}
+            <div class="card-body font-weight-bold h5 mb-0 alert-warning text-dark">
+                {{ total_meal }} <span class="">Unit</span>
             </div>
         </div>
     </div>
