@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 class="text-center">Are you sure, you want to delete {{ expense }}</h1>
+    <h1 class="text-center">Are you sure, you want to delete "{{ expense }}"</h1>
     <div class="text-center">
     <form action="{% url 'delete_expense' expense.id %}" method="POST">
         {% csrf_token %}

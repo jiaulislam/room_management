@@ -7,21 +7,25 @@
 
 {% block content %}
 <h1 class="text-center">List of meals</h1>
-<table class='table table-sm table-bordered text-center'>
-    <thead class="thead-dark">
-        <tr>
+<table class='table table-sm table-striped'>
+    <thead class="bg-warning">
+        <tr class="text-center">
             <th>Date</th>
             <th>Name</th>
             <th>Meal Count</th>
             <th>Remarks</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
     </thead>
     {% for meal in meals %}
-    <tr>
+    <tr class="text-center">
         <td>{{ meal.date|date:'d-M-Y' }}</td>
-        <td>{{ meal.name.username }}</td>
+        <td class='text-capitalize'>{{ meal.name.username }}</td>
         <td>{{ meal.meal_count }}</td>
-        <td>{{ meal.description }}</td>
+        <td class='text-wrap text-uppercase'>{{ meal.description }}</td>
+        <td><a href="{% url 'update-meal' meal.id %}" class="btn btn-sm btn-info text-uppercase">Update</a></td>
+        <td><a href="{% url 'delete_meal' meal.id %}" class="btn btn-sm btn-danger text-uppercase">Delete</a></td>
     </tr>
     {% endfor %}
 </table>

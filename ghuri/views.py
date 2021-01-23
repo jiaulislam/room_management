@@ -3,6 +3,8 @@ from .forms import AddExpenseForm, AddMealForm
 from .models import Expense, Meal
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
+from django.contrib.auth.models import User
+
 import datetime
 
 
@@ -24,14 +26,15 @@ def dashboard(request):
 
 @login_required
 def add_expense(request):
+    current_user = request.user
     title = 'Add Expense'
     if request.method == 'POST':
-        form = AddExpenseForm(request.POST)
+        form = AddExpenseForm(request.POST, initial={'name': current_user})
         if form.is_valid():
             form.save()
             return redirect('add_expense')
     else:
-        form = AddExpenseForm()
+        form = AddExpenseForm(initial={'name': current_user})
 
     view_context = {
         'title': title,
@@ -112,3 +115,30 @@ def index(request):
         'title': 'Home',
     }
     return render(request, 'ghuri/index.html', context)
+
+
+@login_required
+def update_meal(request, pk):
+    existing_meal = Meal.objects.get(id=pk)
+    form = AddMealForm(instance=existing_meal)
+
+    if request.method == "POST":
+        form = AddMealForm(request.POST, instance=existing_meal)
+        if form.is_valid():
+            form.save()
+            return redirect("list_meals")
+    context = {
+        'pk': pk,
+        'form': form,
+        'title': 'Update Meal',
+    }
+    return render(request, template_name='ghuri/add_meal.html', context=context )
+
+@login_required
+def delete_meal(request, pk):
+    meal = Meal.objects.get(id=pk)
+    if request.method == "POST":
+        meal.delete()
+        return redirect('list_meals')
+    context = {'meal': meal}
+    return render(request, 'ghuri/delete_meal.html', context)
