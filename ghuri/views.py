@@ -105,7 +105,7 @@ def delete_expense(request, pk):
         expense.delete()
         return redirect('list_expenses')
     context = {'expense': expense}
-    return render(request, 'ghuri/confirmation.html', context)
+    return render(request, 'ghuri/delete_expense.html', context)
 
 
 def index(request):

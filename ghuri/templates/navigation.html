@@ -1,5 +1,9 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-md navbar-dark bg-info">
-    <a class="navbar-brand mr-4 font-weight-bold fab fa-mandalorian" href="/" style="font-size: 38px !important;"><span class="brand-text pl-2">ঘুড়ি</span></a>
+    <a class="navbar-brand" href="/" style="font-size: 20px !important;">
+        <img width="40" height="40" class="d-inline-block align-top" src="{% static 'images/kite-brand.svg' %}" alt="kite-logo">
+            <span class="brand-text">ঘুড়ি</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,14 +11,14 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto">
             {% if user.is_authenticated %}
-                <li class="nav-item h4 {% if act == 'dashboard' %} active {% endif %}">
+                <li class="nav-item {% if act == 'dashboard' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'dashboard-ghuri' %}">Dashboard</a>
                 </li>
-                <li class="nav-item h4 {% if act == 'profile' %} active {% endif %}">
+                <li class="nav-item {% if act == 'profile' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle h4" href="#" id="navbarDropdownMenuLink" role="button"
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="{% url 'add_expense' %}">Add Expenses</a>
@@ -25,15 +29,15 @@
                 </li>
         </ul>
         <ul class="navbar-nav">
-            <span class="navbar-text mr-4 h4 text-white">
+            <span class="navbar-text mr-4 text-white">
                 Welcome, {{ user.get_full_name }}
             </span>
             <li class="nav-item">
-                <a href="{% url 'logout' %}" class="nav-link h4">Logout</a>
+                <a href="{% url 'logout' %}" class="nav-link">Logout</a>
             </li>
             {% else %}
                 <li class="nav-item active">
-                    <a class="nav-link h4" href="{% url 'login' %}">Login</a>
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
         </ul>
             {% endif %}

@@ -17,7 +17,7 @@ class Expense(models.Model):
         ordering = ["-date",]
 
     def __str__(self):
-        return f"Added Expense - {self.expense_amount} BDT"
+        return f"Created by: {self.name.get_full_name()} --> Expense: {self.expense_amount}"
 
 class Meal(models.Model):
     objects = models.Manager()

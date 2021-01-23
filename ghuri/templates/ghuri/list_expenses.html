@@ -4,7 +4,7 @@
 {% endblock title %}
 
 {% block content %}
-<h1 class="text-center">List of expenses</h1>
+<h3 class="text-center border-bottom">List of expenses</h3>
 <table class="table table-sm table-striped">
     <thead class="bg-warning">
      <tr class="text-center">
@@ -23,8 +23,8 @@
     <td class='text-capitalize'>{{ expense.name.username }}</td>
     <td>{{ expense.expense_amount }} <span class='bdt-text text-muted'>BDT</span></td>
     <td class='text-wrap text-uppercase'>{{ expense.items_description }}</td>
-    <td><a class="btn btn-info text-uppercase" href="{% url 'update-expense' expense.id %}">edit</a></td>
-    <td><a class="btn btn-danger text-uppercase" href="{% url 'delete_expense' expense.id %}">delete</a></td>
+    <td><a class="btn btn-sm btn-info text-uppercase" href="{% url 'update-expense' expense.id %}">update</a></td>
+    <td><a class="btn btn-sm btn-danger text-uppercase" href="{% url 'delete_expense' expense.id %}">delete</a></td>
 </tr>
 {% endfor %}
 

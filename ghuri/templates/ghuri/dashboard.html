@@ -4,34 +4,33 @@
 {{title}}
 {% endblock %}
 
-
 {% block content %}
-<h1 class='text-center'>This is Dashboard Page</h1>
-<div class="row">
+<h1 class='text-center border-bottom'>Dashboard</h1>
+<div class="row pt-3">
     <div class="col-6">
         <div class="card text-center">
-            <div class="card-header h4 bg-success text-white">
+            <div class="card-header bg-success text-white">
                 Total Expenses
             </div>
-            <div class="card-body font-weight-bold h5 mb-0 alert-warning text-dark">
+            <div class="card-body font-weight-bold mb-0 alert-warning text-dark">
                 {{ total_expense }} <span class="">BDT</span>
             </div>
         </div>
     </div>
     <div class="col-6">
         <div class="card text-center">
-            <div class="card-header h4 bg-success text-white">
+            <div class="card-header bg-success text-white">
                 Total Meals
             </div>
-            <div class="card-body font-weight-bold h5 mb-0 alert-warning text-dark">
+            <div class="card-body font-weight-bold mb-0 alert-warning text-dark">
                 {{ total_meal }} <span class="">Unit</span>
             </div>
         </div>
     </div>
 </div>
-<table class="table table-sm table-bordered mt-3">
+<table class="table table-bordered mt-3">
     <tr class="text-center">
-        <th class="bg-primary h4">Details View for January</th>
+        <th class="bg-dark text-white">Details View for January</th>
     </tr>
     <tr>
         <td>
@@ -40,10 +39,10 @@
                 <div class="col-12">
                     <div class="card-group">
                         <div class="card">
-                            <div class="card-header h5">Sobuz</div>
+                            <div class="card-header">Sobuz</div>
                             <div class="card-body">
                                 <table class="table table-sm table-bordered">
-                                    <tr class="bg-danger text-white">
+                                    <tr class="bg-secondary text-white">
                                         <th>Expense</th>
                                         <th>Meals</th>
                                     </tr>
@@ -55,10 +54,10 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-header h5">Jibon</div>
+                            <div class="card-header">Jibon</div>
                             <div class="card-body">
                                 <table class="table table-sm table-bordered">
-                                    <tr class="bg-danger text-white">
+                                    <tr class="bg-secondary text-white">
                                         <th>Expense</th>
                                         <th>Meals</th>
                                     </tr>
@@ -75,8 +74,5 @@
         </td>
 
     </tr>
-
 </table>
-
-
 {% endblock content %}
