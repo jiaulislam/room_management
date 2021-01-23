@@ -91,7 +91,7 @@ def update_expense(request, pk):
             return redirect('list_expenses')
 
     context = {
-        'title': 'Update',
+        'title': 'Update Expense',
         'pk': pk,
         'form': form,
     }
@@ -104,7 +104,7 @@ def delete_expense(request, pk):
     if request.method == "POST":
         expense.delete()
         return redirect('list_expenses')
-    context = {'expense': expense}
+    context = {'expense': expense, 'title': 'Confirm Delete'}
     return render(request, 'ghuri/delete_expense.html', context)
 
 
