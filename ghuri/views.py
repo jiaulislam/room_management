@@ -1,10 +1,8 @@
-from collections import UserString
 from django.shortcuts import render, redirect
 from .forms import AddExpenseForm, AddMealForm
 from .models import Expense, Meal
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
-from django.contrib.auth.models import User
 import datetime
 
 
@@ -23,9 +21,9 @@ def dashboard(request):
         'title': 'Dashboard',
         'act': 'dashboard',
         'total_expense': dash_expense_count['expense_amount__sum'],
-        'total_meal' : dash_meal_count['meal_count__sum'],
+        'total_meal': dash_meal_count['meal_count__sum'],
         'user_expense': user_current_month_expense['expense_amount__sum'],
-        'user_meals' : user_meal_month_meals['meal_count__sum'],
+        'user_meals': user_meal_month_meals['meal_count__sum'],
     }
     return render(request, 'ghuri/dashboard.html', view_context)
 
@@ -45,7 +43,7 @@ def add_expense(request):
         'title': title,
         'form': form,
     }
-    return render(request, 'ghuri/add_expense.html', view_context)  
+    return render(request, 'ghuri/add_expense.html', view_context)
 
 
 @login_required
@@ -137,7 +135,8 @@ def update_meal(request, pk):
         'form': form,
         'title': 'Update Meal',
     }
-    return render(request, template_name='ghuri/add_meal.html', context=context )
+    return render(request, template_name='ghuri/add_meal.html', context=context)
+
 
 @login_required
 def delete_meal(request, pk):

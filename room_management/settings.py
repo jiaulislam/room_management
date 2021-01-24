@@ -31,9 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ghuri.apps.GhuriConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
-    'ghuri.apps.GhuriConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,7 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'room_management.urls'
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -121,5 +121,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'dashboard-ghuri'
 LOGIN_URL = 'login'
