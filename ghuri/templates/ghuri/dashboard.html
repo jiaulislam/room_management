@@ -37,9 +37,8 @@
             <div class="row pt-3 text-center">
                 <!-- Main Table Details -->
                 <div class="col-12">
-                    <div class="card-group">
                         <div class="card">
-                            <div class="card-header">Sobuz</div>
+                            <div class="card-header">{{ user.get_short_name }} Details</div>
                             <div class="card-body">
                                 <table class="table table-sm table-bordered">
                                     <tr class="bg-secondary text-white">
@@ -47,28 +46,12 @@
                                         <th>Meals</th>
                                     </tr>
                                     <tr class="text-info font-weight-bold">
-                                        <td>2330</td>
-                                        <td>32</td>
+                                        <td>{{user_expense}}</td>
+                                        <td>{{user_meals}}</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-header">Jibon</div>
-                            <div class="card-body">
-                                <table class="table table-sm table-bordered">
-                                    <tr class="bg-secondary text-white">
-                                        <th>Expense</th>
-                                        <th>Meals</th>
-                                    </tr>
-                                    <tr class="text-info font-weight-bold">
-                                        <td>45454</td>
-                                        <td>12</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </td>

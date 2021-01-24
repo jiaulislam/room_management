@@ -8,6 +8,7 @@
 <table class="table table-sm table-striped">
     <thead class="bg-warning">
      <tr class="text-center">
+        <th>SL</th>
         <th>Date</th>
         <th>Name</th>
         <th>Expense Amount</th>
@@ -19,6 +20,7 @@
 
 {% for expense in expenses %}
 <tr class="text-center">
+    <td>{{forloop.counter}}</td>
     <td>{{ expense.date|date:'d-M-Y' }}</td>
     <td class='text-capitalize'>{{ expense.name.username }}</td>
     <td>{{ expense.expense_amount }} <span class='bdt-text text-muted'>BDT</span></td>

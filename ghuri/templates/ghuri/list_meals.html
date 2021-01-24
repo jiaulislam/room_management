@@ -10,6 +10,7 @@
 <table class='table table-sm table-striped'>
     <thead class="bg-warning">
         <tr class="text-center">
+            <th>SL</th>
             <th>Date</th>
             <th>Name</th>
             <th>Meal Count</th>
@@ -20,6 +21,7 @@
     </thead>
     {% for meal in meals %}
     <tr class="text-center">
+        <td>{{forloop.counter}}</td>
         <td>{{ meal.date|date:'d-M-Y' }}</td>
         <td class='text-capitalize'>{{ meal.name.username }}</td>
         <td>{{ meal.meal_count }}</td>
