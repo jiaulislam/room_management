@@ -16,5 +16,4 @@ urlpatterns = [
     path('delete-meal/<int:pk>/', views.delete_meal, name='delete_meal'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
