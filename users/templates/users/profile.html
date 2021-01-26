@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %} {{ title }} {% endblock title %}
+{% block title %} {{ user.get_short_name }} Profile {% endblock title %}
 
 {% block content %}
     <div class="content-section">
@@ -14,12 +14,12 @@
                         <p class="text-secondary pl-3">{{ user.email }}</p>
                     </div>
                 </div>
-                <form action="" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
+                <form method="POST" enctype="multipart/form-data">
                     <fieldset class="form-group">
                         <legend class="border-bottom mb-4">Profile Info</legend>
-                        {{ u_form|crispy }}
-                        {{ p_form|crispy }}
+                        {{ user_form|crispy }}
+                        {{ profile_form|crispy }}
+                        {% csrf_token %}
                     </fieldset>
                     <div class="form-group">
                         <button class="btn btn-outline-info" type="submit">Update</button>

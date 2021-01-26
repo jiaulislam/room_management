@@ -15,7 +15,7 @@
                     <a class="nav-link" href="{% url 'dashboard-ghuri' %}">Dashboard</a>
                 </li>
                 <li class="nav-item {% if act == 'profile' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-link" href="{% url 'profile' user.username %}">Profile</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -25,6 +25,7 @@
                         <a class="dropdown-item" href="{% url 'list_expenses' %}">View Expenses</a>
                         <a class="dropdown-item" href="{% url 'add_meal' %}">Add Meals</a>
                         <a class="dropdown-item" href="{% url 'list_meals' %}">View Meals</a>
+                        <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
                     </div>
                 </li>
         </ul>
