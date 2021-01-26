@@ -5,26 +5,31 @@ from django.contrib import messages
 
 
 @login_required
-def profile(request, username):
-    if request.POST == 'POST':
-        u_form = UserUpdateForm(data=request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(data=request.POST, files=request.FILES, instance=request.user.profile)
+def profile(request):
+    if request.method == 'POST':
+        user_form = UserUpdateForm(
+            instance=request.user,
+            data=request.POST)
+        profile_form = ProfileUpdateForm(
+            instance=request.user.profile,
+            data=request.POST,
+            files=request.FILES)
 
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
             messages.success(request, "Your profile has been updated !")
             return redirect('profile')
         else:
             messages.error(request, 'Error updating your profile')
     else:
-        u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
         'act': 'profile',
-        'user_form': u_form,
-        'profile_form': p_form,
-        'username': username
+        'user_form': user_form,
+        'profile_form': profile_form,
+        # 'title': username
     }
     return render(request, 'users/profile.html', context)
