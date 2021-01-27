@@ -1,11 +1,11 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Expense(models.Model):
     objects = models.Manager()
-    name = models.ForeignKey(User,
+    name = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.DO_NOTHING,
                              related_name='expenses',
                              )
@@ -23,7 +23,7 @@ class Expense(models.Model):
 class Meal(models.Model):
     objects = models.Manager()
 
-    name = models.ForeignKey(User,
+    name = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.DO_NOTHING,
                              related_name='meals',
                              )
