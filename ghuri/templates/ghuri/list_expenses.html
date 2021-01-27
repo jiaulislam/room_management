@@ -5,7 +5,7 @@
 
 
 {% block content %}
-    <h3 class="text-center border-bottom">List of expenses</h3>
+    <legend class="text-center border-bottom">List of expenses</legend>
     <table class="table table-sm table-striped">
         <thead class="bg-warning">
         <tr class="text-center">
@@ -32,7 +32,7 @@
                        href="{% url 'delete_expense' expense.id %}">delete</a></td>
             </tr>
         {% empty %}
-            <li>Sorry no data saved yet</li>
+            <li>No data created</li>
         {% endfor %}
     </table>
 

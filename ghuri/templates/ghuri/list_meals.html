@@ -6,7 +6,7 @@
 
 
 {% block content %}
-<h3 class="text-center border-bottom">List of meals</h3>
+<legend class="text-center border-bottom">List of meals</legend>
 <table class='table table-sm table-striped'>
     <thead class="bg-warning">
         <tr class="text-center">
@@ -19,7 +19,7 @@
             <th>Delete</th>
         </tr>
     </thead>
-    {% for meal in meals %}
+    {% for meal in paginated_meal %}
     <tr class="text-center">
         <td>{{forloop.counter}}</td>
         <td>{{ meal.date|date:'d-M-Y' }}</td>
@@ -29,7 +29,43 @@
         <td><a href="{% url 'update-meal' meal.id %}" class="btn btn-sm btn-info text-uppercase">Update</a></td>
         <td><a href="{% url 'delete_meal' meal.id %}" class="btn btn-sm btn-danger text-uppercase">Delete</a></td>
     </tr>
-    {% endfor %}
+{% empty %}
+    <li>No data created</li>
+{% endfor %}
 </table>
 
+<nav aria-label="Page Pagination">
+    {% if items.has_other_pages %}
+        <ul class="pagination justify-content-center">
+            {% if items.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ items.previous_page_number }}" class="page-link"><span>&laquo;</span> Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a href="#" class="page-link" aria-disabled="true"><span>&laquo;</span>
+                        Previous</a>
+                </li>
+            {% endif %}
+
+            {% for item in items.meal_list_paginator.page_range %}
+                {% if items.number == item %}
+                    <ul class="page-item active" aria-current="page">
+                        <li><a href="#" class="page-link btn btn-default"><span>(current)</span>{{ items }} </a></li>
+                    </ul>
+                {% else %}
+                    <ul class="page-item">
+                        <li><a href="?page={{ item }}" class="page-link"></a>{{ items }}</li>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+
+            {% if items.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ items.next_page_number }}" class="page-link">Next <span>&raquo;</span></a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</nav>
 {% endblock content %}

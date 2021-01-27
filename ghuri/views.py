@@ -88,10 +88,20 @@ def list_expenses(request):
 
 @login_required
 def list_meals(request):
-    meals = Meal.objects.all()
+    meal_list = Meal.objects.all()
+    meal_list_paginator = Paginator(meal_list, 10)
+
+    page_number = request.GET.get('page')
+
+    try:
+        paginated_meal = meal_list_paginator.page(page_number)
+    except PageNotAnInteger:
+        paginated_meal = meal_list_paginator.page(1)
+    except EmptyPage:
+        paginated_meal = meal_list_paginator.page(meal_list_paginator.num_pages)
     view_context = {
         'title': 'Meals List',
-        'meals': meals,
+        'items': paginated_meal,
     }
     return render(request, 'ghuri/list_meals.html', view_context)
 
