@@ -1,33 +1,75 @@
 {% extends 'base.html' %}
 {% block title %}
-{{ title }}
+    {{ title }}
 {% endblock title %}
 
-{% block content %}
-<h3 class="text-center border-bottom">List of expenses</h3>
-<table class="table table-sm table-striped">
-    <thead class="bg-warning">
-     <tr class="text-center">
-        <th>SL</th>
-        <th>Date</th>
-        <th>Name</th>
-        <th>Expense Amount</th>
-        <th class='text-wrap'>Remarks</th>
-        <th>Update</th>
-        <th>Delete</th>
-    </tr>     
-</thead>
 
-{% for expense in expenses %}
-<tr class="text-center">
-    <td>{{forloop.counter}}</td>
-    <td>{{ expense.date|date:'d-M-Y' }}</td>
-    <td class='text-capitalize'>{{ expense.name.username }}</td>
-    <td>{{ expense.expense_amount }} <span class='bdt-text text-muted'>BDT</span></td>
-    <td class='text-wrap text-uppercase'>{{ expense.items_description }}</td>
-    <td><a class="btn btn-sm btn-info text-uppercase" href="{% url 'update-expense' expense.id %}">update</a></td>
-    <td><a class="btn btn-sm btn-danger text-uppercase" href="{% url 'delete_expense' expense.id %}">delete</a></td>
-</tr>
-{% endfor %}
+{% block content %}
+    <h3 class="text-center border-bottom">List of expenses</h3>
+    <table class="table table-sm table-striped">
+        <thead class="bg-warning">
+        <tr class="text-center">
+            <th>SL</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Expense Amount</th>
+            <th class='text-wrap'>Remarks</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+
+        {% for expense in items %}
+            <tr class="text-center">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ expense.date|date:'d-M-Y' }}</td>
+                <td class='text-capitalize'>{{ expense.name.username }}</td>
+                <td>{{ expense.expense_amount }} <span class='bdt-text text-muted'>BDT</span></td>
+                <td class='text-wrap text-uppercase'>{{ expense.items_description }}</td>
+                <td><a class="btn btn-sm btn-info text-uppercase"
+                       href="{% url 'update-expense' expense.id %}">update</a></td>
+                <td><a class="btn btn-sm btn-danger text-uppercase"
+                       href="{% url 'delete_expense' expense.id %}">delete</a></td>
+            </tr>
+        {% empty %}
+            <li>Sorry no data saved yet</li>
+        {% endfor %}
+    </table>
+
+    <nav aria-label="Page Pagination">
+        {% if items.has_other_pages %}
+            <ul class="pagination justify-content-center">
+                {% if items.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ items.previous_page_number }}" class="page-link"><span>&laquo;</span> Previous</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-disabled="true"><span>&laquo;</span>
+                            Previous</a>
+                    </li>
+                {% endif %}
+
+                {% for item in items.expense_list_paginator.page_range %}
+                    {% if items.number == item %}
+                        <ul class="page-item active" aria-current="page">
+                            <li><a href="#" class="page-link btn btn-default"><span>(current)</span>{{ items }} </a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="page-item">
+                            <li><a href="?page={{ item }}" class="page-link"></a>{{ items }}</li>
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+
+                {% if items.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{ items.next_page_number }}" class="page-link">Next <span>&raquo;</span></a>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </nav>
+
 
 {% endblock content %}

@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from .forms import AddExpenseForm, AddMealForm
 from .models import Expense, Meal
@@ -66,11 +67,21 @@ def add_meal(request):
 
 @login_required
 def list_expenses(request):
-    expenses = Expense.objects.all()
+    expense_list = Expense.objects.all()
+    expense_list_paginator = Paginator(expense_list, 10)
 
+    page_number = request.GET.get('page')
+
+    try:
+        expenses = expense_list_paginator.page(page_number)
+    except PageNotAnInteger:
+        expenses = expense_list_paginator.page(1)
+    except EmptyPage:
+        expenses = expense_list_paginator.page(expense_list_paginator.num_pages)
     view_context = {
         'title': 'Expenses List',
-        'expenses': expenses,
+        # 'expense_list': expense_list,
+        'items': expenses,
     }
     return render(request, 'ghuri/list_expenses.html', view_context)
 
