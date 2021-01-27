@@ -89,7 +89,7 @@ def list_expenses(request):
 @login_required
 def list_meals(request):
     meal_list = Meal.objects.all()
-    meal_list_paginator = Paginator(meal_list, 5)
+    meal_list_paginator = Paginator(meal_list, 10)
 
     page_number = request.GET.get('page')
 
