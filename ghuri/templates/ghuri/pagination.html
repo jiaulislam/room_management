@@ -1,43 +1,45 @@
-<nav aria-label="Page Pagination">
-    {% if items.has_other_pages %}
-        <ul class="pagination justify-content-center">
-            {% if items.has_previous %}
-                <li class="page-item">
-                    <a href="?page={{ 1 }}" class="page-link btn btn-sm btn-default"> << </a>
-                </li>
-                <li class="page-item">
-                    <a href="?page={{ items.previous_page_number }}" class="page-link btn btn-sm btn-default"><span>&laquo;</span> Prev</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a href="#" class="page-link btn btn-sm btn-default" aria-disabled="true"><span>&laquo;</span> Prev</a>
-                </li>
-            {% endif %}
-
-            {% for item in items.paginator.page_range %}
-                {% if items.number == item %}
-                    <li class="page-item active px-0 py-0" aria-current="page">
-                        <a href="?page={{ item }}" class="page-link btn btn-default btn-sm">{{ item }}</a>
+<div class="fixed-bottom">
+    <nav aria-label="Page Pagination">
+        {% if items.has_other_pages %}
+            <ul class="pagination justify-content-center">
+                {% if items.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ 1 }}" class="page-link fa fa-angle-double-left btn btn-lg mx-2"></a>
                     </li>
-                {% elif item > items.number|add:"-3" and item < items.number|add:"3" %}
-                    <li class="page-item px-0 py-0">
-                        <a href="?page={{ item }}" class="page-link btn btn-default btn-sm">{{ item }}</a>
+                    <li class="page-item">
+                        <a href="?page={{ items.previous_page_number }}" class="page-link btn btn-lg fa fa-angle-left mr-1"></a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a href="#" class="page-link btn btn-lg fa fa-angle-left mx-2" aria-disabled="true"></a>
                     </li>
                 {% endif %}
-            {% endfor %}
 
-            {% if items.has_next %}
-                <li class="page-item">
-                    <a href="?page={{ items.next_page_number }}" class="page-link btn btn-sm btn-default">Next <span>&raquo;</span></a>
-                </li>
-                <li class="page-item">
-                    <a href="?page={{ items.paginator.num_pages }}" class="page-link btn btn-sm btn-default"> >> </a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a href="#" class="page-link btn btn-sm btn-default" aria-disabled="true">Next <span>&raquo;</span></a>
-                </li>
-            {% endif %}
-        </ul>
-    {% endif %}
-</nav>
+                {% for item in items.paginator.page_range %}
+                    {% if items.number == item %}
+                        <li class="page-item active px-0 py-0" aria-current="page">
+                            <a href="?page={{ item }}" class="page-link btn mx-1">{{ item }}</a>
+                        </li>
+                    {% elif item > items.number|add:"-3" and item < items.number|add:"3" %}
+                        <li class="page-item px-0 py-0">
+                            <a href="?page={{ item }}" class="page-link btn mx-1">{{ item }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if items.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{ items.next_page_number }}" class="btn btn-lg page-link fa fa-angle-right ml-1"></a>
+                    </li>
+                    <li class="page-item">
+                        <a href="?page={{ items.paginator.num_pages }}" class="btn btn-lg page-link fa fa-angle-double-right mx-2"></a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a href="#" class="page-link fa fa-angle-double-right btn btn-lg mx-2" aria-disabled="true"></a>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </nav>
+</div>
