@@ -3,6 +3,9 @@
         <ul class="pagination justify-content-center">
             {% if items.has_previous %}
                 <li class="page-item">
+                    <a href="?page={{ 1 }}" class="page-link btn btn-sm btn-default"> << </a>
+                </li>
+                <li class="page-item">
                     <a href="?page={{ items.previous_page_number }}" class="page-link btn btn-sm btn-default"><span>&laquo;</span> Prev</a>
                 </li>
             {% else %}
@@ -26,6 +29,9 @@
             {% if items.has_next %}
                 <li class="page-item">
                     <a href="?page={{ items.next_page_number }}" class="page-link btn btn-sm btn-default">Next <span>&raquo;</span></a>
+                </li>
+                <li class="page-item">
+                    <a href="?page={{ items.paginator.num_pages }}" class="page-link btn btn-sm btn-default"> >> </a>
                 </li>
             {% else %}
                 <li class="page-item disabled">

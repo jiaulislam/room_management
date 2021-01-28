@@ -68,7 +68,7 @@ def add_meal(request):
 @login_required
 def list_expenses(request):
     expense_list = Expense.objects.all()
-    paginator = Paginator(expense_list, 1)
+    paginator = Paginator(expense_list, per_page=10, orphans=3)
 
     page_number = request.GET.get('page')
 
@@ -88,7 +88,7 @@ def list_expenses(request):
 @login_required
 def list_meals(request):
     meal_list = Meal.objects.all()
-    paginator = Paginator(meal_list, 1)
+    paginator = Paginator(meal_list, per_page=10, orphans=3)
 
     page_number = request.GET.get('page')
 
