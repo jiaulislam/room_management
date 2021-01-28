@@ -3,20 +3,20 @@
         <ul class="pagination justify-content-center">
             {% if items.has_previous %}
                 <li class="page-item">
-                    <a href="?page={{ items.previous_page_number }}" class="page-link"><span>&laquo;</span> Previous</a>
+                    <a href="?page={{ items.previous_page_number }}" class="page-link btn btn-sm btn-default"><span>&laquo;</span> Prev</a>
                 </li>
             {% else %}
                 <li class="page-item disabled">
-                    <a href="#" class="page-link" aria-disabled="true"><span>&laquo;</span>Previous</a>
+                    <a href="#" class="page-link btn btn-sm btn-default" aria-disabled="true"><span>&laquo;</span> Prev</a>
                 </li>
             {% endif %}
 
             {% for item in items.paginator.page_range %}
                 {% if items.number == item %}
                     <li class="page-item active px-0 py-0" aria-current="page">
-                        <a href="#" class="page-link btn btn-default btn-sm">{{ item }}</a>
+                        <a href="?page={{ item }}" class="page-link btn btn-default btn-sm">{{ item }}</a>
                     </li>
-                {% else %}
+                {% elif item > items.number|add:"-3" and item < items.number|add:"3" %}
                     <li class="page-item px-0 py-0">
                         <a href="?page={{ item }}" class="page-link btn btn-default btn-sm">{{ item }}</a>
                     </li>
@@ -25,11 +25,11 @@
 
             {% if items.has_next %}
                 <li class="page-item">
-                    <a href="?page={{ items.next_page_number }}" class="page-link">Next <span>&raquo;</span></a>
+                    <a href="?page={{ items.next_page_number }}" class="page-link btn btn-sm btn-default">Next <span>&raquo;</span></a>
                 </li>
             {% else %}
                 <li class="page-item disabled">
-                    <a href="#" class="page-link" aria-disabled="true">Next <span>&raquo;</span></a>
+                    <a href="#" class="page-link btn btn-sm btn-default" aria-disabled="true">Next <span>&raquo;</span></a>
                 </li>
             {% endif %}
         </ul>
