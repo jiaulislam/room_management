@@ -68,19 +68,18 @@ def add_meal(request):
 @login_required
 def list_expenses(request):
     expense_list = Expense.objects.all()
-    expense_list_paginator = Paginator(expense_list, 10)
+    paginator = Paginator(expense_list, 10)
 
     page_number = request.GET.get('page')
 
     try:
-        expenses = expense_list_paginator.page(page_number)
+        expenses = paginator.page(page_number)
     except PageNotAnInteger:
-        expenses = expense_list_paginator.page(1)
+        expenses = paginator.page(1)
     except EmptyPage:
-        expenses = expense_list_paginator.page(expense_list_paginator.num_pages)
+        expenses = paginator.page(paginator.num_pages)
     view_context = {
         'title': 'Expenses List',
-        # 'expense_list': expense_list,
         'items': expenses,
     }
     return render(request, 'ghuri/list_expenses.html', view_context)
@@ -89,16 +88,16 @@ def list_expenses(request):
 @login_required
 def list_meals(request):
     meal_list = Meal.objects.all()
-    meal_list_paginator = Paginator(meal_list, 10)
+    paginator = Paginator(meal_list, 10)
 
     page_number = request.GET.get('page')
 
     try:
-        meals = meal_list_paginator.page(page_number)
+        meals = paginator.page(page_number)
     except PageNotAnInteger:
-        meals = meal_list_paginator.page(1)
+        meals = paginator.page(1)
     except EmptyPage:
-        meals = meal_list_paginator.page(meal_list_paginator.num_pages)
+        meals = paginator.page(paginator.num_pages)
     view_context = {
         'title': 'Meals List',
         'items': meals,
