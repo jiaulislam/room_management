@@ -17,7 +17,7 @@ class Expense(models.Model):
         ordering = ["-date", ]
 
     def __str__(self):
-        return f"Name: {self.name.get_full_name()} --> Expense: {self.expense_amount}"
+        return f"Name: {self.name.get_short_name()} --> Expense: {self.expense_amount}"
 
 
 class Meal(models.Model):
@@ -35,4 +35,4 @@ class Meal(models.Model):
         ordering = ["-date", ]
 
     def __str__(self):
-        return f"Name: {self.name.get_full_name()} --> Meal: {self.meal_count}"
+        return f"Name: {self.name.get_short_name()} --> Meal: {self.meal_count}"
