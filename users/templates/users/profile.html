@@ -16,11 +16,11 @@
                     </div>
                 </div>
                 <form method="post" enctype="multipart/form-data">
-                        <legend class="border-bottom mb-4">Profile Info</legend>
+                        <legend class="border-bottom mb-4">Profile</legend>
                         {{ user_form|crispy }}
                         {{ profile_form|crispy }}
                         {% csrf_token %}
-                        <p><input class="btn btn-outline-info" type="submit" value="Save Changes"></p>
+                        <p><input class="btn btn-outline-info" type="submit" value="Save"></p>
                 </form>
             </div>
         </div>
