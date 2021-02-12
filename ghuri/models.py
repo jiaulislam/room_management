@@ -2,9 +2,12 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 
+from ghuri.managers import MealManager, ExpenseManager
+
 
 class Expense(models.Model):
     objects = models.Manager()
+    expenses = ExpenseManager()
     name = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.DO_NOTHING,
                              related_name='expenses',
@@ -17,11 +20,12 @@ class Expense(models.Model):
         ordering = ["-date", ]
 
     def __str__(self):
-        return f"Name: {self.name.get_short_name()} --> Expense: {self.expense_amount}"
+        return f"{self.name} --> Expense: {self.expense_amount}"
 
 
 class Meal(models.Model):
     objects = models.Manager()
+    meals = MealManager()
 
     name = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.DO_NOTHING,
@@ -35,4 +39,4 @@ class Meal(models.Model):
         ordering = ["-date", ]
 
     def __str__(self):
-        return f"Name: {self.name.get_short_name()} --> Meal: {self.meal_count}"
+        return f"{self.name} --> Meal: {self.meal_count}"
