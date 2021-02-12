@@ -9,7 +9,10 @@ def profile(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(
             instance=request.user,
-            data=request.POST)
+            data=request.POST,
+            initial={'username': request.user})
+        print(request.user.username)
+        print(user_form.has_changed())
         profile_form = ProfileUpdateForm(
             instance=request.user.profile,
             data=request.POST,
@@ -23,7 +26,8 @@ def profile(request):
         else:
             messages.error(request, 'Error updating your profile')
     else:
-        user_form = UserUpdateForm(instance=request.user)
+        user_form = UserUpdateForm(instance=request.user,
+                                   initial={'username': request.user})
         profile_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {

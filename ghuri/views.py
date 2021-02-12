@@ -1,21 +1,17 @@
+from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
+
 from .forms import AddExpenseForm, AddMealForm
 from .models import Expense, Meal
-from django.contrib.auth.decorators import login_required
-from django.db.models import Sum
-from django.contrib.auth import get_user_model
-import datetime
 
 
 @login_required
 def dashboard(request):
-    today = datetime.date.today()
     all_users = get_user_model().objects.exclude(is_superuser=True)
-    current_month_total_expenses = Expense.objects.filter(date__year=today.year, date__month=today.month)
-    current_month_meals = Meal.objects.filter(date__year=today.year, date__month=today.month)
-    dash_meal_count = current_month_meals.aggregate(Sum('meal_count'))
-    dash_expense_count = current_month_total_expenses.aggregate(Sum('expense_amount'))
+    current_month_total_expenses = Expense.expenses.with_sum_total_month()
+    current_month_meals = Meal.meals.with_sum_total_month()
     user_summary_db = []
 
     for user in all_users:
@@ -23,13 +19,26 @@ def dashboard(request):
                                 Expense.expenses.with_sum(user.id),
                                 Meal.meals.with_sum(user.id)
                                 ])
+    try:
+        meal_rate = current_month_total_expenses / current_month_meals
+    except ZeroDivisionError:
+        meal_rate = 0
+
+    user_expense = Expense.expenses.with_sum(request.user)
+
+    if user_expense is None:
+        user_expense = 0
+
+    pay_amount = user_expense - ((Meal.meals.with_sum(request.user)) * meal_rate)
 
     view_context = {
         'title': 'Dashboard',
         'act': 'dashboard',
-        'total_expense': dash_expense_count['expense_amount__sum'],
-        'total_meal': dash_meal_count['meal_count__sum'],
-        'users': user_summary_db
+        'total_expense': current_month_total_expenses,
+        'total_meal': current_month_meals,
+        'users': user_summary_db,
+        'meal_rate': meal_rate,
+        'pay_amount': pay_amount
     }
     return render(request, 'ghuri/dashboard.html', view_context)
 
@@ -73,7 +82,7 @@ def add_meal(request):
 @login_required
 def list_expenses(request):
     expense_list = Expense.objects.all()
-    paginator = Paginator(object_list=expense_list, per_page=10, orphans=3)
+    paginator = Paginator(object_list=expense_list, per_page=10)
 
     page_number = request.GET.get('page')
 
@@ -93,7 +102,7 @@ def list_expenses(request):
 @login_required
 def list_meals(request):
     meal_list = Meal.objects.all()
-    paginator = Paginator(object_list=meal_list, per_page=10, orphans=3)
+    paginator = Paginator(object_list=meal_list, per_page=10)
 
     page_number = request.GET.get('page')
 

@@ -5,29 +5,29 @@
 {% endblock %}
 
 {% block content %}
-<h1 class='text-center border-bottom'>Dashboard</h1>
-<div class="row pt-3">
-    <div class="col-6">
-        <div class="card text-center">
-            <div class="card-header bg-success text-white">
-                Total Expenses Amount
+    <h1 class='text-center border-bottom'>Dashboard</h1>
+    <div class="row pt-3">
+        <div class="col-6">
+            <div class="card text-center">
+                <div class="card-header bg-success text-white">
+                    Total Expenses Amount
+                </div>
+                <div class="card-body font-weight-bold mb-0 alert-warning text-dark">
+                    {{ total_expense|default:0 }}
+                </div>
             </div>
-            <div class="card-body font-weight-bold mb-0 alert-warning text-dark">
-                {{ total_expense|default:0 }}
+        </div>
+        <div class="col-6">
+            <div class="card text-center">
+                <div class="card-header bg-success text-white">
+                    Total Meals Count
+                </div>
+                <div class="card-body font-weight-bold mb-0 alert-warning text-dark">
+                    {{ total_meal|default:0 }}
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-6">
-        <div class="card text-center">
-            <div class="card-header bg-success text-white">
-                Total Meals Count
-            </div>
-            <div class="card-body font-weight-bold mb-0 alert-warning text-dark">
-                {{ total_meal|default:0 }}
-            </div>
-        </div>
-    </div>
-</div>
 
     <div class="user-list-details">
         <div class="card my-3">
@@ -40,21 +40,39 @@
                             <th>Meal</th>
                         </tr>
                         {% for user in users %}
-
                             <tr>
                                 <td>{{ user.0|capfirst }}</td>
                                 <td>{{ user.1|default:0 }}</td>
                                 <td>{{ user.2|default:0 }}</td>
                             </tr>
-
-{#                            <tr>#}
-{#                                <td>{{ user.username|capfirst }}</td>#}
-{#                                <td>{{ user }}</td>#}
-{#                                <td>{{ user.meals.count|default:0 }}</td>#}
-{#                            </tr>#}
                         {% endfor %}
                     </table>
                 </div>
         </div>
     </div>
+
+    <section class="user-monthly-summary">
+        <div>
+            <div class="row">
+                <div class="col-6 align-content-center">
+                    <div class="card">
+                        <div class="card-header">
+                            Monthly Account Summary
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">Meal Rate <span class="float-right">{{ meal_rate|floatformat:3 }}</span></li>
+                                {% if pay_amount >= 0 %}
+                                    <li class="list-group-item text-success">Bill to Pay <span class="float-right">{{ pay_amount|floatformat:3 }}</span></li>
+                                {% else %}
+                                    <li class="list-group-item text-danger">Bill to Pay <span class="float-right font-weight-bold">{{ pay_amount|floatformat:3 }}</span></li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock content %}

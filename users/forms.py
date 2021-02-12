@@ -6,13 +6,14 @@ from .models import Profile
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username','first_name', 'last_name', 'email')
+        fields = ('username', 'first_name', 'last_name', 'email')
         widgets = {
-            'username': forms.TextInput(attrs={'disabled': 'true'}),
+            'username': forms.TextInput(attrs={'readonly': 'true'}),
         }
         help_texts = {
-            'username' : None,
+            'username': None,
         }
+
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
