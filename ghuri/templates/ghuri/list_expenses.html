@@ -24,7 +24,7 @@
                 <td>{{ forloop.counter }}</td>
                 <td>{{ expense.date|date:'d-M-Y' }}</td>
                 <td class='text-capitalize'>{{ expense.name.username }}</td>
-                <td>{{ expense.expense_amount }} <span class='bdt-text text-muted'>BDT</span></td>
+                <td>{{ expense.expense_amount }} <span class='bdt-text'> &#2547;</span></td>
                 <td class='text-wrap text-uppercase'>{{ expense.items_description }}</td>
                 <td><a class="btn btn-sm btn-info text-uppercase"
                        href="{% url 'update-expense' expense.id %}">update</a></td>

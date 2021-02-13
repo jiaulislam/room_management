@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 {{title}}
@@ -13,7 +14,7 @@
                     Total Expenses Amount
                 </div>
                 <div class="card-body font-weight-bold mb-0 alert-warning text-dark">
-                    {{ total_expense|default:0 }}
+                    {{ total_expense|default:0 }}<span> &#2547;</span>
                 </div>
             </div>
         </div>
@@ -33,8 +34,8 @@
         <div class="card my-3">
             <div class="card-header bg-info text-white">Details</div>
                 <div class="card-body">
-                    <table class="table table-bordered table-sm text-center">
-                        <tr class="bg-warning">
+                    <table class="table table-bordered table-sm text-center shadow">
+                        <tr class="bg-light">
                             <th>User</th>
                             <th>Expense</th>
                             <th>Meal</th>
@@ -42,7 +43,7 @@
                         {% for user in users %}
                             <tr>
                                 <td>{{ user.0|capfirst }}</td>
-                                <td>{{ user.1|default:0 }}</td>
+                                <td class="justify-content">{{ user.1|default:0 }}<span> &#2547;</span></td>
                                 <td>{{ user.2|default:0 }}</td>
                             </tr>
                         {% endfor %}
@@ -61,13 +62,12 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group">
-                                <li class="list-group-item">Meal Rate <span class="float-right">{{ meal_rate|floatformat:3 }}</span></li>
+                                <li class="list-group-item">Meal Rate <span class="float-right">{{ meal_rate|floatformat:3 }} &#2547;</span></li>
                                 {% if pay_amount >= 0 %}
-                                    <li class="list-group-item text-success">Bill to Pay <span class="float-right">{{ pay_amount|floatformat:3 }}</span></li>
+                                    <li class="list-group-item text-success">Bill to Pay <span class="float-right">{{ pay_amount|floatformat:3 }} &#2547;</span></li>
                                 {% else %}
-                                    <li class="list-group-item text-danger">Bill to Pay <span class="float-right font-weight-bold">{{ pay_amount|floatformat:3 }}</span></li>
+                                    <li class="list-group-item text-danger">Bill to Pay <span class="float-right font-weight-bold">{{ pay_amount|floatformat:3 }} &#2547;</span></li>
                                 {% endif %}
-
                             </ul>
                         </div>
                     </div>
