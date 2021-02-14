@@ -12,6 +12,7 @@ def dashboard(request):
     all_users = get_user_model().objects.exclude(is_superuser=True)
     current_month_total_expenses = Expense.expenses.with_sum_total_month()
     current_month_meals = Meal.meals.with_sum_total_month()
+    user_expense = Expense.expenses.with_sum(request.user)
     user_summary_db = []
 
     for user in all_users:
@@ -19,15 +20,13 @@ def dashboard(request):
                                 Expense.expenses.with_sum(user.id),
                                 Meal.meals.with_sum(user.id)
                                 ])
+    if user_expense is None:
+        user_expense = 0
+
     try:
         meal_rate = current_month_total_expenses / current_month_meals
     except ZeroDivisionError:
         meal_rate = 0
-
-    user_expense = Expense.expenses.with_sum(request.user)
-
-    if user_expense is None:
-        user_expense = 0
 
     pay_amount = user_expense - ((Meal.meals.with_sum(request.user)) * meal_rate)
 
