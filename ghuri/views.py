@@ -146,13 +146,6 @@ def delete_expense(request, pk):
     return render(request, 'ghuri/delete_expense.html', context)
 
 
-def index(request):
-    context = {
-        'title': 'Home',
-    }
-    return render(request, 'ghuri/index.html', context)
-
-
 @login_required
 def update_meal(request, pk):
     existing_meal = Meal.objects.get(id=pk)
