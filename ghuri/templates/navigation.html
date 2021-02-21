@@ -31,7 +31,7 @@
         </ul>
         <ul class="navbar-nav">
             <span class="navbar-text mr-4 text-white">
-                Welcome, {{ user.username|capfirst }}
+                Welcome, &nbsp{{ user.username }}
             </span>
             <li class="nav-item">
                 <a href="{% url 'logout' %}" class="nav-link">Logout</a>
